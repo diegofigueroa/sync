@@ -22,6 +22,11 @@ end
 
 gem 'jquery-rails'
 
+gem 'archive-zip'
+gem 'minitar'
+gem 'rbzip2'
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

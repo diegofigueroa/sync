@@ -1,6 +1,13 @@
 class Project < ActiveRecord::Base
   
-  TYPES = %w(git svn zip tar)
+  TYPES = %w(git svn zip tar tgz tbz)
+  
+  GIT = 0
+  SVN = 1
+  ZIP = 2
+  TAR = 3
+  TGZ = 4
+  TBZ = 5
   
   attr_accessible :description, :name, :project_url, :source_code_url, :vcs
   

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  last_state: MyString
+  updated: false
+  commit: MyString
+  project_id: 
+
+two:
+  last_state: MyString
+  updated: false
+  commit: MyString
+  project_id: 

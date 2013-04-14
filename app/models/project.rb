@@ -7,4 +7,9 @@ class Project < ActiveRecord::Base
   validates :source_code_url, presence: true
   validates :vcs, presence: true, inclusion: {in: TYPES}
   
+  has_many :logs
+  
+  def friendly_name
+    name.downcase.gsub(" ", "-")
+  end
 end

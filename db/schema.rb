@@ -11,6 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130414203114) do
+
+  create_table "logs", :force => true do |t|
+    t.string   "last_state"
+    t.boolean  "updated",    :default => false
+    t.string   "commit"
+    t.integer  "project_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "logs", ["project_id"], :name => "index_logs_on_project_id"
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "project_url"
+    t.string   "source_code_url"
+    t.string   "vcs"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
 end

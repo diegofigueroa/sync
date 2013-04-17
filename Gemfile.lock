@@ -42,9 +42,14 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     crummy (1.7.1)
+    diff-lcs (1.2.3)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    grit (2.5.0)
+      diff-lcs (~> 1.1)
+      mime-types (~> 1.15)
+      posix-spawn (~> 0.3.6)
     haml (4.0.2)
       tilt
     haml-rails (0.4)
@@ -69,6 +74,7 @@ GEM
     minitar (0.5.4)
     multi_json (1.7.2)
     polyglot (0.3.3)
+    posix-spawn (0.3.6)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -128,6 +134,7 @@ DEPENDENCIES
   bootstrap-sass (~> 2.3.1.0)
   coffee-rails (~> 3.2.1)
   crummy (~> 1.7.1)
+  grit
   haml-rails
   jquery-rails
   minitar

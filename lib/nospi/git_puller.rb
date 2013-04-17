@@ -12,7 +12,7 @@ class GitPuller
   def self.pull project_id
     project = Project.find project_id
     url = project.source_code_url
-    tmpPath = '/tmp/'    
+    tmpPath = '/tmp/'+project.friendly_name+"/"    
     repo = Grit::Git.new(tmpPath)
   	process = repo.clone({:process_info => true, :progress => true, :timeout => false}, url, tmpPath)
   end

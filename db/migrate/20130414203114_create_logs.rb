@@ -5,7 +5,6 @@ class CreateLogs < ActiveRecord::Migration
       t.boolean :updated, :default => false
       t.string :commit
       t.references :project
-
       t.timestamps
     end
     add_index :logs, :project_id

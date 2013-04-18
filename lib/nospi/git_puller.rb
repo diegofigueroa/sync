@@ -15,6 +15,10 @@ class GitPuller
     tmpPath = '/tmp/'+project.friendly_name+"/"    
     repo = Grit::Git.new(tmpPath)
   	process = repo.clone({:process_info => true, :progress => true, :timeout => false}, url, tmpPath)
+  	if process && project.status == 0
+  	  project.status = 1
+  	  project.save
+  	end
   end
 
 end

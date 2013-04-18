@@ -19,4 +19,5 @@ class Project < ActiveRecord::Base
   def friendly_name
     name.downcase.gsub(" ", "-")
   end
+
 end

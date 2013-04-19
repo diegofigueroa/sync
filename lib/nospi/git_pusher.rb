@@ -17,7 +17,7 @@ class GitPusher
   def self.push project_id, branch
     project = Project.find project_id
     url = project.source_code_url
-    tmpPath = '/tmp/'    
+    tmpPath = '/tmp/'    #Actualizar Path, al Rails PAth tmp
 
   	repo = Grit::Git.new(tmpPath)
     remote = repo.remotes.last

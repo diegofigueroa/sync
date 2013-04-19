@@ -22,7 +22,7 @@ class GitPusher
   	repo = Grit::Git.new(tmpPath)
     remote = repo.remotes.last
     self.addRemote project.friendly_name, url
-	pusher = repo.git.push({:process_info => true, :progress => true}, project.friendly_name, branch)
+	  pusher = repo.git.push({:process_info => true, :progress => true}, project.friendly_name, branch)
   end
 
 end

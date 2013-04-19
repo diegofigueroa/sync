@@ -2,3 +2,28 @@
 <title>NASA Challenge</title>
 
 <h3>Dashboard</h3>
+
+
+<% if @projects.empty? %>
+  <p><strong>There are not Projects :( </strong></p>
+<% end %>
+
+
+
+
+<% @projects.each do |project| %>
+<div class="well">
+<div class="row">
+	<% from_time = Time.now %>
+
+
+<div class="row-title"><h3><%= project.name %></h3></div>
+<div class="row-ending">Added <%= distance_of_time_in_words(project.created_at, from_time) %> Ago</div>
+
+
+</div>
+
+</div>
+<% end %>
+
+ => Project(id: integer, name: string, description: text, project_url: string, source_code_url: string, vcs: string, nosi_github_repo_name: string, status: integer, created_at: datetime, updated_at: datetime) 

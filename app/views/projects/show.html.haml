@@ -2,11 +2,18 @@
 
 .page-header
   %h1= @project.name
-%blockquote
-  %p= @project.description
+  %h4= link_to @project.project_url, @project.project_url, :target => "_blank"
+
+.row
+  .span10
+    %blockquote
+      %p= @project.description
+  .span1.offset1
+    .pull-right
+      %span.label.label-info.span1
+        %center= @project.vcs
 
 = @project.source_code_url
-= @project.vcs
 
 .form-actions
   = link_to edit_project_path(@project), :class => "btn btn-info" do

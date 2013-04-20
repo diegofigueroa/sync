@@ -38,6 +38,10 @@ gem 'github_api'
 gem 'kaminari'
 gem 'whenever', :require => false
 
+group :development, :test do
+  gem 'thin'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

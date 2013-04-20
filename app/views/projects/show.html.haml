@@ -11,9 +11,10 @@
   .span1.offset1
     .pull-right
       %span.label.label-info.span1
-        %center= @project.vcs
-
-= @project.source_code_url
+        %center= "license"
+      %br/
+      %span.label.label-inverse.span1
+        %center= link_to @project.vcs, @project.source_code_url
 
 .form-actions
   = link_to edit_project_path(@project), :class => "btn btn-info" do

@@ -35,6 +35,7 @@ gem 'haml-rails'
 gem 'grit'
 gem 'github_api'
 
+gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

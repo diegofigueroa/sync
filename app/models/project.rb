@@ -15,6 +15,7 @@ class Project < ActiveRecord::Base
   validates :vcs, presence: true, inclusion: {in: TYPES}
   
   has_many :logs
+  belongs_to :license
   
   def friendly_name
     name.downcase.gsub(" ", "-")

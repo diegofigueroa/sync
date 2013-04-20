@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130414203114) do
+ActiveRecord::Schema.define(:version => 20130418001026) do
 
   create_table "logs", :force => true do |t|
     t.string   "last_state"
@@ -30,10 +30,9 @@ ActiveRecord::Schema.define(:version => 20130414203114) do
     t.string   "project_url"
     t.string   "source_code_url"
     t.string   "vcs"
-    t.string   "nosi_github_repo_name"
-    t.integer  "status",                :default => 0
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "repo_name"
   end
 
 end

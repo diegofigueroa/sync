@@ -13,8 +13,11 @@ gem 'sqlite3'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  
   gem 'bootstrap-sass', '~> 2.3.1.0'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'bootswatch-rails'
+  gem 'font-awesome-rails'
+  
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
@@ -28,8 +31,11 @@ gem 'rbzip2'
 
 gem 'crummy', '~> 1.7.1'
 gem 'haml-rails'
+
 gem 'grit'
-gem "github_api"
+gem 'github_api'
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

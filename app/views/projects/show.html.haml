@@ -1,0 +1,18 @@
+%p#notice= notice
+
+.page-header
+  %h1= @project.name
+%blockquote
+  %p= @project.description
+
+= @project.source_code_url
+= @project.vcs
+
+.form-actions
+  = link_to edit_project_path(@project), :class => "btn btn-info" do
+    %i.icon-edit
+    Edit
+  .pull-right
+    = link_to @project.repo_name, :class => "btn" do
+      %i.icon-github.icon-large
+      View on GitHub

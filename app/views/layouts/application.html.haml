@@ -1,0 +1,32 @@
+!!!doctype html
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+    %title= content_for?(:title) ? yield(:title) : "NASA Sync"
+    %meta{:content => content_for?(:description) ? yield(:description) : "Open Source projects syncing made easy.", :name => "description"}
+    = favicon_link_tag
+    = stylesheet_link_tag :application, :media => "all"
+    = javascript_include_tag :application
+    = csrf_meta_tags
+    = yield(:head)
+    %script{:type => "text/javascript"}
+      $(function(){
+      = yield(:jquery)
+      });
+    %body.preview{:style => "margin-top: 0px;"}
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            %a.btn.btn-navbar{data: {toggle: "collapse", target: ".nav-collapse"}}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            = link_to :root, :class => "brand" do
+              = image_tag "meatball.png", {:style => "margin-top:-5px", :width => "36px"}
+              Sync
+            = render 'layouts/navigation'
+      .container
+        = render 'layouts/messages'
+        = yield
+      %footer

@@ -1,9 +1,6 @@
- 
-= link_to :root, :class => "brand" do
-  = image_tag "meatball.png", {:style => "margin-top:-5px", :width => "36px"}
-  = "Dashboard"
-%ul.nav
-  %li
-    %form.navbar-form.pull-left
-      %input{ :type => "text", :class => "input-xxlarge", :placeholder => "Search projects"}
-      %button{:type =>"submit", :class => "btn"} Search
+.nav-collapse.collapse
+  %ul.nav
+    %li
+      %form.navbar-form.pull-left
+        %input{:type => "text", :class => "span6", :placeholder => "Search projects"}
+        %button{:type =>"submit", :class => "btn"} Search

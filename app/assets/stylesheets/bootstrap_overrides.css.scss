@@ -1,0 +1,14 @@
+@import "bootswatch/spacelab/variables";
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "bootswatch/spacelab/bootswatch";
+@import "font-awesome";
+
+body{
+  @media (min-width: 980px) {
+    padding-top:60px;
+  }
+}
+
+[class^="icon-"], [class*=" icon-"]{
+}

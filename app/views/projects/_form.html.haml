@@ -1,25 +1,60 @@
-= form_for @project do |f|
-  - if @project.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
-      %ul
-        - @project.errors.full_messages.each do |msg|
-          %li= msg
+%header#overview.jumbotron.subhead
+  #br
+  .container
+    %fieldset  
+      %legend.span10
+        New Project
+    %br
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :project_url
-    = f.text_field :project_url
-  .field
-    = f.label :source_code_url
-    = f.text_field :source_code_url
-  .field
-    = f.label :vcs
-    = f.text_field :vcs
-  .actions
-    = f.submit 'Save'
+      = form_for @project do |f|
+        - if @project.errors.any?
+          #error_explanation
+            %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+            %ul
+              - @project.errors.full_messages.each do |msg|
+                %li= msg
+
+        %div.control-group
+          .control-label
+            = f.label :name
+          %div.controls
+            .input-xxlarge
+              = f.text_field :name, :class => "span6"
+        %div
+          .control-group
+            .control-label
+              = f.label :description
+            %div.controls
+              .input-xxlarge
+                = f.text_area :description, :class => "span6" , :style => "height: 200px;"
+        
+        %div
+          .control-group
+            .control-label
+              = f.label :project_url
+            %div.controls
+              .input-xxlarge
+                = f.text_field :project_url, :class => "span6"
+        
+        %div
+          .control-group
+            .control-label
+              = f.label :source_code_url
+            %div.controls
+              .input-xxlarge
+                = f.text_field :source_code_url, :class => "span6"
+                
+        %div
+          .control-group
+            .control-label
+              = f.label :vcs
+            %div.controls
+              .input-xxlarge
+                = f.select :vcs, options_for_select([["Git", "git"], ["SVN", "svn"] , ["ZIP", "zip"] , ["TAR", "tar"] , ["TGZ", "tgz"] , ["TBZ", "tbz"]])
+                
+        %div.row
+          %div.span7
+          %div.span4
+            %div.btn
+              .btn-primary
+                = f.submit 'Save'    

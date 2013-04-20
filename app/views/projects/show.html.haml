@@ -14,13 +14,13 @@
         %center= "license"
       %br/
       %span.label.label-inverse.span1
-        %center= link_to @project.vcs, @project.source_code_url
+        %center= link_to @project.vcs, @project.source_code_url, :target => "_blank"
 
 .form-actions
   = link_to edit_project_path(@project), :class => "btn btn-info" do
     %i.icon-edit
     Edit
   .pull-right
-    = link_to @project.repo_name, :class => "btn" do
+    = link_to @project.repo_name, :class => "btn", :target => "_blank" do
       %i.icon-github.icon-large
       View on GitHub

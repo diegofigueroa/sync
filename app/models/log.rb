@@ -1,4 +1,4 @@
 class Log < ActiveRecord::Base
   belongs_to :project
-  attr_accessible :commit, :last_state, :updated
+  attr_accessible :commit, :last_state, :updated, :synced
 end

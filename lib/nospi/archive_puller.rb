@@ -9,10 +9,10 @@ require 'rbzip2'
 class ArchivePuller
   include Archive::Tar
   
-  def self.pull project_id
-    project = Project.find project_id
+  def self.pull project
     url = project.source_code_url
     file = Tempfile.new([project.friendly_name, ".#{project.vcs}"], Rails.root.join('tmp'), :encoding => 'ascii-8bit')
+    result = nil
     
     begin
       file.print open(url).read
@@ -23,19 +23,23 @@ class ArchivePuller
       
       updated = false
       unless project.logs.exists?(:last_state => md5) # project changed
-	updated = true
-	
-	tmp = Dir.mktmpdir project.friendly_name, Rails.root.join('tmp')
-	self.extract file, tmp, project.vcs
+        updated = true
+        
+        tmp = Dir.mktmpdir project.friendly_name, Rails.root.join('tmp')
+        self.extract file, tmp, project.vcs
       end
       
       log = project.logs.create last_state: md5, updated: updated
+      
+      result = {source_path: tmp, log: log}
       
     rescue SocketError => e
       Rails.logger.error e.inspect
       file.close
       file.unlink
     end
+    
+    result
   end
   
   private

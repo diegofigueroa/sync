@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420044412) do
+ActiveRecord::Schema.define(:version => 20130420211219) do
+
+  create_table "github_settings", :force => true do |t|
+    t.string   "client_id"
+    t.string   "client_secret"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "username"
+    t.string   "organization",  :default => ""
+  end
 
   create_table "licenses", :force => true do |t|
     t.string   "title"
@@ -27,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130420044412) do
     t.integer  "project_id"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.boolean  "synced",     :default => false
   end
 
   add_index "logs", ["project_id"], :name => "index_logs_on_project_id"
@@ -41,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130420044412) do
     t.datetime "updated_at",      :null => false
     t.string   "repo_name"
     t.integer  "license_id"
+    t.integer  "interval"
   end
 
 end

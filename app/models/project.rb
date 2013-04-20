@@ -1,6 +1,9 @@
+require 'tempfile'
+
 class Project < ActiveRecord::Base
   
   TYPES = %w(git svn zip tar tgz tbz)
+  INTERVALS = [1, 5, 10, 24]
   
   GIT = 0
   SVN = 1
@@ -13,12 +16,44 @@ class Project < ActiveRecord::Base
   
   validates :source_code_url, presence: true
   validates :vcs, presence: true, inclusion: {in: TYPES}
+  validates :interval, presence: true, inclusion: {in: INTERVALS}
   
   has_many :logs
   belongs_to :license
   
+  def is_git?
+    self.type.eql? TYPES[GIT]
+  end
+  
+  def is_svn?
+    self.type.eql? TYPES[SVN]
+  end
+  
+  def is_zip?
+    self.type.eql? TYPES[ZIP]
+  end
+  
+  def is_tar?
+    self.type.eql? TYPES[TAR]
+  end
+  
+  def is_tgz?
+    self.type.eql? TYPES[TGZ]
+  end
+  
+  def is_tbz?
+    self.type.eql? TYPES[TBZ]
+  end
+  
+  def is_archive?
+    is_zip? || is_tar? || is_tgz || is_tbz
+  end
+  
   def friendly_name
     name.downcase.gsub(" ", "-")
   end
-
+  
+  def tmp_path
+    Rails.root.join('tmp').join(self.friendly_name)
+  end
 end

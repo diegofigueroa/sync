@@ -37,6 +37,7 @@ gem 'github_api'
 
 gem 'kaminari'
 gem 'whenever', :require => false
+gem 'svn2git'
 
 gem 'acts-as-taggable-on'
 

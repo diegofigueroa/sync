@@ -38,6 +38,8 @@ gem 'github_api'
 gem 'kaminari'
 gem 'whenever', :require => false
 
+gem 'acts-as-taggable-on'
+
 group :development, :test do
   #gem 'thin'
 end

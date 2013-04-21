@@ -8,8 +8,12 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    page = params[:page] || 1
-    @projects = Project.page page
+    if params[:tag]
+      @projects = Project.tagged_with(params[:tag])
+    else
+      page = params[:page] || 1
+      @projects = Project.page page
+    end
 
     respond_to do |format|
       format.html # index.html.erb

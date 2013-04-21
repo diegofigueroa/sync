@@ -1,4 +1,6 @@
 Nospi::Application.routes.draw do
+
+  get 'tags/:tag' , to: 'projects#index' , as: :tag
   resources :projects do
     collection do
       post :search

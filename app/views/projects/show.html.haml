@@ -23,6 +23,7 @@
             %p.justify= @project.description
 
             %br/
+            .row
 
             Center: <a href="http://code.nasa.gov/centers/goddard-space-flight-center/" rel="tag">Goddard Space Flight Center</a> <br/>
             License: <a href="http://code.nasa.gov/license/nasa-open-source-agreement/" rel="tag">NASA Open Source Agreement</a> <br/>
@@ -57,6 +58,7 @@
               Usuario
         %tbody
         - @log.each do |log_item|
+
           %td
             1
           %td

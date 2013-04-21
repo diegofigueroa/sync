@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 %header#overview.jumbotron.subhead
   #br
   .container
@@ -6,8 +5,8 @@
       %legend.span10
       
     %br
-=======
->>>>>>> c6df933079ad7d929512e6465ae925edb0289f69
+
+
 
 = form_for @project, :html => {:class => "form-horizontal"} do |f|
   - if @project.errors.any?
@@ -65,39 +64,17 @@
     .controls
       .input-xxlarge
         = f.select :interval, Project::INTERVALS.map{ |value| ["#{value} hours", value] }
-        
-<<<<<<< HEAD
-        %div
-          .control-group
-            .control-label
-              = f.label :source_code_url
-            %div.controls
-              .input-xxlarge
-                = f.text_field :source_code_url, :class => "span6"
-                
-        %div
-          .control-group
-            .control-label
-              = f.label :vcs
-            %div.controls
-              .input-xxlarge
-                = f.select :vcs, options_for_select([["Git", "git"], ["SVN", "svn"] , ["ZIP", "zip"] , ["TAR", "tar"] , ["TGZ", "tgz"] , ["TBZ", "tbz"]])
-        
-        %div
-          .control-group
-            .control-label
-              = f.label :frecuencia
-            %div.controls
-              .input-xxlarge
-                = f.text_field :source_code_url, :class => "span2" , :placeholder => "0.00"
+
+  .control-group
+    .control-label
+      = f.label :tag_list, "Tag List (',' Separated)"
+    .controls
+      .input-xxlarge
+        = f.text_field :tag_list, :class => "span6"
+  
+  
+  %br    
+  .btn-primary
+    = f.submit 'Save'          
 
 
-        %div.row
-          %div.span7
-          %div.span4
-            %div.btn
-              .btn-primary
-                = f.submit 'Save'    
-=======
-  = f.submit 'Save', :class => "btn btn-primary"
->>>>>>> c6df933079ad7d929512e6465ae925edb0289f69

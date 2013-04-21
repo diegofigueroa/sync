@@ -14,8 +14,9 @@ class SvnPuller
     
     system "mkdir #{tmp_path}"    
     system "cd #{tmp_path} && wget -m -np #{url}"  #This will take a while.
-
-    result
+    
+    log = project.logs.create action: "pull", updated: true, level: "info"
+    result = {source_path: tmp_path, log: log}
   end
   
 end

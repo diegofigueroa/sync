@@ -20,6 +20,8 @@ class Synchronizer
       pull_result = ArchivePuller.pull project
     elsif project.is_git?
       pull_result = GitPuller.pull project
+    elsif project.is_svn?
+      pull_result = SvnPuller.pull project
     else
       pull_result = nil
     end

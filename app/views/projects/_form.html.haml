@@ -23,28 +23,35 @@
 
   .control-group
     .control-label
-      = f.label :project_url
+      = f.label :project_url, "Project home page"
     .controls
       .input-xxlarge
         = f.text_field :project_url, :class => "span6"
 
   .control-group
     .control-label
-      = f.label :source_code_url
+      = f.label :source_code_url, "Source code location"
     .controls
       .input-xxlarge
         = f.text_field :source_code_url, :class => "span6"
-        
+  
   .control-group
     .control-label
-      = f.label :vcs
+      = f.label :repo_name, "Destination repository"
+    .controls
+      .input-xxlarge
+        = f.text_field :repo_name, :class => "span6"
+  
+  .control-group
+    .control-label
+      = f.label :vcs, "Distribution method"
     .controls
       .input-xxlarge
         = f.select :vcs, Project::TYPES.map{ |value| [value.capitalize, value] }
   
   .control-group
     .control-label
-      = f.label :interval
+      = f.label :interval, "Sync interval"
     .controls
       .input-xxlarge
         = f.select :interval, Project::INTERVALS.map{ |value| ["#{value} hours", value] }

@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   TGZ = 4
   TBZ = 5
   
-  attr_accessible :description, :name, :project_url, :source_code_url, :vcs, :interval
+  attr_accessible :description, :name, :project_url, :source_code_url, :repo_name, :vcs, :interval
   
   validates :source_code_url, presence: true
   validates :vcs, presence: true, inclusion: {in: TYPES}
@@ -54,6 +54,6 @@ class Project < ActiveRecord::Base
   end
   
   def tmp_path
-    Rails.root.join('tmp').join(self.friendly_name).to_path
+    Rails.root.join('tmp').join(self.friendly_name).to_path + "/"
   end
 end

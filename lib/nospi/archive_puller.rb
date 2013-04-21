@@ -22,7 +22,7 @@ class ArchivePuller
       md5 = Digest::MD5.file(file.path).hexdigest
       
       updated = false
-      unless project.logs.exists?(:last_state => md5) # project changed
+      unless project.logs.exists?(:last_state => md5, :synced => true) # project changed
         updated = true
         
         tmp = Dir.mktmpdir project.friendly_name, Rails.root.join('tmp')

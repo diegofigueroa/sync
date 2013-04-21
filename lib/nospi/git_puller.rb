@@ -18,11 +18,12 @@ class GitPuller
     process = repo.clone({:process_info => true, :progress => true, :timeout => false}, url, tmp_path)
     if process
       # project.status = 1 # not anymore, create a log instead
-      
+      repo = Grit::Repo.new(tmp_path)
       last_commit = repo.commits.first  # check if this works
-      updated = ! project.logs.exists?(:last_state => last_commit) # project changed
       
-      log = project.logs.create last_state: last_commit, updated: updated
+      updated = ! project.logs.exists?(:last_state => last_commit.id, :synced => true) # project changed
+      
+      log = project.logs.create last_state: last_commit.id, updated: updated
       result = {source_path: tmp_path, log: log}
     end
     

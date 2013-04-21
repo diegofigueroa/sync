@@ -3,15 +3,20 @@ require 'grit'
 class GitPusher
 
   def self.push project, tmp_path, branch = 'master'
-    url = project.repo_name
-    name = project.friendly_name
+    name = project.repo_name || project.friendly_name
     
     repo = self.find_repo name
     unless repo
       repo = self.create_repo name
     end
     
-    system "cd #{tmp_path} && git remote add #{name} #{url}"
+    push_url = repo.html_url.gsub "github.com", "nasasync:#{CGI::escape('n@s@g1t')}@github.com" # chapuz FEO!
+    
+    system "cd #{tmp_path} && git init"
+    system "cd #{tmp_path} && git add ."
+    system "cd #{tmp_path} && git commit -m 'automatic commit on #{Time.now}'"
+    system "cd #{tmp_path} && git remote rm #{name}"
+    system "cd #{tmp_path} && git remote add #{name} #{push_url}"
     system "cd #{tmp_path} && git push #{name} --mirror"
   end
   
@@ -20,7 +25,6 @@ class GitPusher
     credentials = GithubSettings.first        # change this if per user settings enabled
     if credentials
       gh = authorize credentials
-      puts gh.inspect
       repo = gh.repos.create :name => name #, :org => credentials.organization
     else
       Rails.logger.error "Couldn't find github credentials."

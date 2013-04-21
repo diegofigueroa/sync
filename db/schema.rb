@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420211219) do
+ActiveRecord::Schema.define(:version => 20130421152343) do
 
   create_table "github_settings", :force => true do |t|
     t.string   "client_id"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20130420211219) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "synced",     :default => false
+    t.string   "action"
+    t.string   "level"
   end
 
   add_index "logs", ["project_id"], :name => "index_logs_on_project_id"
@@ -47,10 +49,8 @@ ActiveRecord::Schema.define(:version => 20130420211219) do
     t.string   "project_url"
     t.string   "source_code_url"
     t.string   "vcs"
-    t.string   "nosi_github_repo_name"
-    t.integer  "status",                :default => 0
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "repo_name"
     t.integer  "license_id"
     t.integer  "interval"

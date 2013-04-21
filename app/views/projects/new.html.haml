@@ -1,7 +1,6 @@
-
-.form-horizontal 
-	.well.span11
-		= render 'form'
-
-	
-	= link_to 'Back', projects_path
+.well
+  .page-header
+    %legend
+      %h1 New project
+  = render 'form'
+  = link_to 'Back', projects_path

@@ -1,10 +1,12 @@
 class Synchronizer
   INTERVALS = Project::INTERVALS
   
-  def perform interval
-    if INTERVALS.includes? interval
+  def self.perform interval
+    if INTERVALS.include? interval
       projets = Project.where(interval: interval)
-      projets.find_each |project| do
+      projets.find_each do |project|
+        
+        puts ">>>>>>>>>>>>>>>>>>>>> pulling changes (if any)...."
         if project.is_archive?
           pull_result = ArchivePuller.pull project
         elsif project.is_git?
@@ -14,6 +16,7 @@ class Synchronizer
         end
         
         if pull_result && log = pull_result[:log]
+          puts ">>>>>>>>>>>>>>>>>>>>> pushing changes (if any)...."
           if log.updated?
             GitPusher.push project, pull_result[:source_path]
           end
@@ -24,4 +27,21 @@ class Synchronizer
       puts msg
       Rails.logger.error msg
     end
+  end
+  
+  def self.perform_one
+    self.perform 1
+  end
+  
+  def self.perform_five
+    self.perform 5
+  end
+  
+  def self.perform_ten
+    self.perform 10
+  end
+  
+  def self.perform_twentyfour
+    self.perform 24
+  end
 end

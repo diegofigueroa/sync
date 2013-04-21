@@ -33,7 +33,7 @@
         .span9
           %dl.dl-horizontal
             %dt Last update 
-            %dd= time_ago @project.logs.last.created_at
+            %dd= time_ago @project.updated_at
             %dt Update interval
             %dd= "#{@project.interval} hours"
             

@@ -1,9 +1,9 @@
 class ProjectsController < ApplicationController
 
   def search
-    query  = params[:query]
     page = params[:page] || 1
-    @projects = Project.where("name like ? or description like ?" , "%#{query}%" , "%#{query}%").page page
+    @query  = params[:query]
+    @projects = Project.where("name like ? or description like ?" , "%#{@query}%" , "%#{@query}%").page page
   end
 
   # GET /projects

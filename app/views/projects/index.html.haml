@@ -1,43 +1,14 @@
-%header#overview.jumbotron.subhead
+%header.page-header.jumbotron.subhead
   .row
     .span6
       %h1 NASA Sync
       %p.lead Open Source projects syncing made easy.
-      %hr
-
-- @projects.each do |project|
-  .well
-    %legend
-      .row
-        .span7
-          %h3= project.name
-          %h5= link_to project.project_url, project.project_url, :target => "_blank"
-        .span2.pull-right
-          = link_to project, :class => "btn btn-primary" do
-            %i.icon-exclamation-sign.icon-white
-            View more &raquo;
-        
-          .btn-group
-            %button{:class => "btn btn-small"}
-              %i.icon-google-plus
-            %button{:class => "btn btn-small"}
-              %i.icon-twitter
-            %button{:class => "btn btn-small"}
-              %i.icon-facebook
-            %button{:class => "btn btn-small"}
-              %i.icon-github
-      
-    .row
-      %blockquote.span7
-        %p= project.description
-      
-      .span4
-        %dl.dl-horizontal
-          %dt Last update 
-          %dd= time_ago project.created_at
-          %dt Center
-          %dd= project.center
-          %dt License
-          %dd= project.license
+    .span2.offset4
+      .pull-right
+        = link_to new_project_path, :class => "btn btn-success btn-large" do
+          %i.icon-plus
+          Add project
+    
+= render "list"
 
  

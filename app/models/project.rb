@@ -12,7 +12,8 @@ class Project < ActiveRecord::Base
   TGZ = 4
   TBZ = 5
   
-  attr_accessible :description, :name, :project_url, :source_code_url, :repo_name, :vcs, :interval
+  attr_accessible :description, :name, :project_url, :source_code_url, :repo_name, :vcs, :interval, :center, :tag_list
+  acts_as_taggable
   
   validates :source_code_url, presence: true 
   validates :vcs, presence: true, inclusion: {in: TYPES}
@@ -40,7 +41,7 @@ class Project < ActiveRecord::Base
   def is_tgz?
     self.vcs.eql? TYPES[TGZ]
   end
-  
+              
   def is_tbz?
     self.vcs.eql? TYPES[TBZ]
   end

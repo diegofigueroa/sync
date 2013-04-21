@@ -1,15 +1,20 @@
 class ProjectsController < ApplicationController
 
   def search
-    variable  = params[:query]
-    @projects = Project.where( "name like ? or description like ?" , "%" + variable + "%" , "%" + variable + "%" )
+    page = params[:page] || 1
+    @query  = params[:query]
+    @projects = Project.where("name like ? or description like ?" , "%#{@query}%" , "%#{@query}%").page page
   end
 
   # GET /projects
   # GET /projects.json
   def index
-    page = params[:page] || 1
-    @projects = Project.page page
+    if params[:tag]
+      @projects = Project.tagged_with(params[:tag])
+    else
+      page = params[:page] || 1
+      @projects = Project.page page
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,12 +26,23 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @log     = Log.where(:project_id => params[:id])
-    
+    @logs = @project.logs
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
+    end
+  end
+  
+  def sync
+    @project = Project.find(params[:id])
+    if @project
+      @result = Synchronizer.sync @project
+    end
+    
+    respond_to do |format|
+      format.html{ redirect_to @project, notice: "Project synced."}
+      format.js
     end
   end
 

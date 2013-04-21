@@ -27,7 +27,6 @@ class GitPusher
     project.logs.create action: "push", synced: true, level: "info"    # check response from push command and change synced and level
   end
   
-  # TODO: create github repo with provided name
   def self.create_repo name
     credentials = GithubSettings.first        # change this if per user settings enabled
     if credentials

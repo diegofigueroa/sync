@@ -12,8 +12,8 @@ class SvnPuller
   def self.pull project
     url = project.source_code_url
     
-    system "mkdir -m -np #{tmp_path}"    
-    system "cd #{tmp_path} && wget #{url}"  #This will take a while.
+    system "mkdir #{tmp_path}"    
+    system "cd #{tmp_path} && wget -m -np #{url}"  #This will take a while.
 
     result
   end

@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(:version => 20130421152343) do
     t.string   "project_url"
     t.string   "source_code_url"
     t.string   "vcs"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "nosi_github_repo_name"
+    t.integer  "status",                :default => 0
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "repo_name"
     t.integer  "license_id"
     t.integer  "interval"

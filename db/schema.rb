@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421033602) do
+ActiveRecord::Schema.define(:version => 20130421152343) do
 
   create_table "github_settings", :force => true do |t|
     t.string   "client_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130421033602) do
     t.datetime "updated_at",                    :null => false
     t.boolean  "synced",     :default => false
     t.string   "action"
+    t.string   "level"
   end
 
   add_index "logs", ["project_id"], :name => "index_logs_on_project_id"

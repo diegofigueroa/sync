@@ -3,18 +3,23 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-# Example:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
-# end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
+set :output, "/home/diego/projects/nospi/log/cron.log"
+
+every 1.hours do
+  runner "Synchronizer.perform_one"
+end
+
+every 5.hours do
+  runner "Synchronizer.perform_five"
+end
+
+every 10.hours do
+  runner "Synchronizer.perform_ten"
+end
+
+every 24.hours do
+  runner "Synchronizer.perform_twentyfour"
+end
+
 
 # Learn more: http://github.com/javan/whenever

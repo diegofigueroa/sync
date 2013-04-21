@@ -29,7 +29,7 @@ class ArchivePuller
         self.extract file, tmp, project.vcs
       end
       
-      log = project.logs.create last_state: md5, updated: updated
+      log = project.logs.create action: "pull", last_state: md5, updated: updated, level: "info"
       
       result = {source_path: tmp, log: log}
       

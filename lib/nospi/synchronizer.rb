@@ -25,4 +25,20 @@ class Synchronizer
       Rails.logger.error msg
     end
   end
+  
+  def self.perform_one
+    self.perform 1
+  end
+  
+  def self.perform_five
+    self.perform 5
+  end
+  
+  def self.perform_ten
+    self.perform 10
+  end
+  
+  def self.perform_twentyfour
+    self.perform 24
+  end
 end

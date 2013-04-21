@@ -9,33 +9,35 @@
   .well
     %legend
       .row
-        .span9
+        .span7
           %h3= project.name
           %h5= link_to project.project_url, project.project_url, :target => "_blank"
         .span2.pull-right
           = link_to project, :class => "btn btn-primary" do
             %i.icon-exclamation-sign.icon-white
             View more &raquo;
-          %br
-          = image_tag("fb_icon.png" ,:width => '28px', :height => '25px')
-          = image_tag("tw_icon.png" ,:width => '28px', :height => '25px')
-          = image_tag("gp_icon.png" ,:width => '28px', :height => '25px')
+        
+          .btn-group
+            %button{:class => "btn btn-small"}
+              %i.icon-google-plus
+            %button{:class => "btn btn-small"}
+              %i.icon-twitter
+            %button{:class => "btn btn-small"}
+              %i.icon-facebook
+            %button{:class => "btn btn-small"}
+              %i.icon-github
       
-    .row-fluid      
-      %blockquote.span9
+    .row
+      %blockquote.span7
         %p= project.description
       
-      %div.span2
-        Center: <a href="http://code.nasa.gov/centers/goddard-space-flight-center/" rel="tag">Goddard Space Flight Center</a> <br/>
-        License: <a href="http://code.nasa.gov/license/nasa-open-source-agreement/" rel="tag">NASA Open Source Agreement</a> <br/>
-        Fecha Actualizacion : 12/02/2012 
-    %br
-    %br    
-    
-= link_to 'New Project', new_project_path
-
-%br 
-%br 
-%br
+      .span4
+        %dl.dl-horizontal
+          %dt Last update 
+          %dd= time_ago project.created_at
+          %dt Center
+          %dd= project.center
+          %dt License
+          %dd= project.license
 
  

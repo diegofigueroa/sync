@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421152343) do
+ActiveRecord::Schema.define(:version => 20130421165454) do
 
   create_table "github_settings", :force => true do |t|
     t.string   "client_id"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20130421152343) do
     t.string   "repo_name"
     t.integer  "license_id"
     t.integer  "interval"
+    t.string   "center"
   end
 
 end

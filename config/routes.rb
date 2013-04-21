@@ -1,5 +1,9 @@
 Nospi::Application.routes.draw do
   resources :projects do
+    member do
+      get :sync
+    end
+    
     collection do
       post :search
     end

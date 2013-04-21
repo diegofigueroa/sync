@@ -1,8 +1,8 @@
 .nav-collapse.collapse
   %ul.nav
     %li
-      %form.navbar-form.pull-left
-        %input{:type => "text", :class => "span6", :placeholder => "Search projects"}
+      = form_tag search_projects_path, :class =>"navbar-form pull-left"  do
+        %input{:type => "text", :class => "span9", :placeholder => "Search projects" , :name => "query"}
         %button{:type =>"submit", :class => "btn"}
           %icon.icon-search
           Search

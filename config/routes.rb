@@ -1,5 +1,9 @@
 Nospi::Application.routes.draw do
-  resources :projects
+  resources :projects do
+    collection do
+      post :search
+    end
+  end
 
 
   # The priority is based upon order of creation:
@@ -59,4 +63,5 @@ Nospi::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   root to: "projects#index"
+
 end

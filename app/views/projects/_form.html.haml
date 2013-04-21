@@ -3,7 +3,7 @@
   .container
     %fieldset  
       %legend.span10
-        New Project
+      
     %br
 
       = form_for @project do |f|
@@ -51,7 +51,16 @@
             %div.controls
               .input-xxlarge
                 = f.select :vcs, options_for_select([["Git", "git"], ["SVN", "svn"] , ["ZIP", "zip"] , ["TAR", "tar"] , ["TGZ", "tgz"] , ["TBZ", "tbz"]])
-                
+        
+        %div
+          .control-group
+            .control-label
+              = f.label :frecuencia
+            %div.controls
+              .input-xxlarge
+                = f.text_field :source_code_url, :class => "span2" , :placeholder => "0.00"
+
+
         %div.row
           %div.span7
           %div.span4

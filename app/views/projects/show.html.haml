@@ -4,24 +4,64 @@
   %h1= @project.name
   %h4= link_to @project.project_url, @project.project_url, :target => "_blank"
 
-.row
-  .span10
-    %blockquote
-      %p= @project.description
-  .span1.offset1
-    .pull-right
-      %span.label.label-info.span1
-        %center= "license"
-      %br/
-      %span.label.label-inverse.span1
-        %center= link_to @project.vcs, @project.source_code_url, :target => "_blank"
 
-.form-actions
-  = link_to edit_project_path(@project), :class => "btn btn-info" do
-    %i.icon-edit
-    Edit
-  .pull-right
-    = link_to @project.repo_name, :class => "btn", :target => "_blank" do 
-      %i.icon-github.icon-large
-      View on GitHub
 
+
+%div.tabbable
+  %ul.nav.nav-tabs
+    %li.active
+      %a{:href => "#tab1" , :"data-toggle" => "tab"}
+        Details
+    %li
+      %a{:href => "#tab2" , :"data-toggle" => "tab"}
+        History
+  %div.tab-content
+    %div#tab1.tab-pane.activate
+      .row
+        .span10
+          %blockquote
+            %p.justify= @project.description
+
+            %br/
+
+            Center: <a href="http://code.nasa.gov/centers/goddard-space-flight-center/" rel="tag">Goddard Space Flight Center</a> <br/>
+            License: <a href="http://code.nasa.gov/license/nasa-open-source-agreement/" rel="tag">NASA Open Source Agreement</a> <br/>
+            Fecha Actualizacion : 12/02/2012 <br/>
+            Frecuencia de Actualizacion : 1000 ml <br/>
+        .span2
+          %span.label.label-info.span1
+            %justify= "license"
+          %br/
+          %span.label.label-inverse.span1
+            %center= link_to @project.vcs, @project.source_code_url, :target => "_blank"
+
+      .form-actions
+        = link_to edit_project_path(@project), :class => "btn btn-info" do
+          %i.icon-edit
+          Edit
+        .pull-right
+          = link_to @project.repo_name, :class => "btn", :target => "_blank" do 
+            %i.icon-github.icon-large
+            View on GitHub
+    %div#tab2.tab-pane
+      %table.table
+        %thead
+          %tr
+            %th
+              Num
+            %th
+              Hora y Fecha
+            %th
+              Exitoso
+            %th
+              Usuario
+        %tbody
+        - @log.each do |log_item|
+          %td
+            1
+          %td
+            Mark
+          %td 
+            Otto
+          %td
+            @mrmb

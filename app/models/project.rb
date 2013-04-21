@@ -12,9 +12,9 @@ class Project < ActiveRecord::Base
   TGZ = 4
   TBZ = 5
   
-  attr_accessible :description, :name, :project_url, :source_code_url, :vcs
+  attr_accessible :description, :name, :project_url, :source_code_url, :vcs 
   
-  validates :source_code_url, presence: true
+  validates :source_code_url, presence: true 
   validates :vcs, presence: true, inclusion: {in: TYPES}
   validates :interval, presence: true, inclusion: {in: INTERVALS}
   

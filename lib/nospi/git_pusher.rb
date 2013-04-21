@@ -12,12 +12,17 @@ class GitPusher
     
     push_url = repo.html_url.gsub "github.com", "nasasync:#{CGI::escape('n@s@g1t')}@github.com" # chapuz FEO! maybe request a ssh key and use ssh_url
     
-    system "cd #{tmp_path} && git init"
-    system "cd #{tmp_path} && git add ."
-    system "cd #{tmp_path} && git commit -m 'automatic commit on #{Time.now}'"
-    system "cd #{tmp_path} && git remote rm #{name}"
-    system "cd #{tmp_path} && git remote add #{name} #{push_url}"
-    system "cd #{tmp_path} && git push #{name} --mirror"
+      
+    repo = Grit::Repo.init('/tmp/#{tmp_path}')  
+    
+    if repo != nil
+      system "cd #{tmp_path} && git add ."
+      system "cd #{tmp_path} && git commit -m 'automatic commit on #{Time.now}'"
+      system "cd #{tmp_path} && git remote rm #{name}"
+      system "cd #{tmp_path} && git remote add #{name} #{push_url}"
+      system "cd #{tmp_path} && git push #{name} --mirror"  
+    end
+    
     
     project.logs.create action: "push", synced: true, level: "info"    # check response from push command and change synced and level
   end

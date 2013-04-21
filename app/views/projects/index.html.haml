@@ -1,43 +1,15 @@
-%header#overview.jumbotron.subhead
+%header.page-header.jumbotron.subhead
   .row
     .span6
       %h1 NASA Sync
       %p.lead Open Source projects syncing made easy.
-      %hr
-
-- @projects.each do |project|
-  .well
-    %legend
-      .row
-        .span9
-          %h3= project.name
-          %h5= link_to project.project_url, project.project_url, :target => "_blank"
-          
-        .span2.pull-right
-          = link_to project, :class => "btn btn-primary" do
-            %i.icon-exclamation-sign.icon-white
-            View more &raquo;
-          %br
-          = image_tag("fb_icon.png" ,:width => '28px', :height => '25px')
-          = image_tag("tw_icon.png" ,:width => '28px', :height => '25px')
-          = image_tag("gp_icon.png" ,:width => '28px', :height => '25px')
-      
-    .row-fluid      
-      %blockquote.span9
-        %p= project.description
-        %br/
-        Tags 
-        %h5= raw project.tag_list.map { |t| link_to t , tag_path(t) , :class => "label label-info" }.join(' ') 
-
-      %div.span2
-        Center: <a href="http://code.nasa.gov/centers/goddard-space-flight-center/" rel="tag">Goddard Space Flight Center</a> <br/>
-        License: <a href="http://code.nasa.gov/license/nasa-open-source-agreement/" rel="tag">NASA Open Source Agreement</a> <br/>
-        Fecha Actualizacion : 12/02/2012 
     
-= link_to 'New Project', new_project_path
-
-%br 
-%br 
-%br
+    .span2.offset4
+      .pull-right
+        = link_to new_project_path, :class => "btn btn-success btn-large" do
+          %i.icon-plus
+          Add project
+    
+= render "list"
 
  

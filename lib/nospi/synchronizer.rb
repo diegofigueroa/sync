@@ -1,10 +1,10 @@
 class Synchronizer
   INTERVALS = Project::INTERVALS
   
-  def perform interval
-    if INTERVALS.includes? interval
+  def self.perform interval
+    if INTERVALS.include? interval
       projets = Project.where(interval: interval)
-      projets.find_each |project| do
+      projets.find_each do |project|
         if project.is_archive?
           pull_result = ArchivePuller.pull project
         elsif project.is_git?
@@ -24,4 +24,5 @@ class Synchronizer
       puts msg
       Rails.logger.error msg
     end
+  end
 end

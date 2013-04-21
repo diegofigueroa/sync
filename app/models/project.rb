@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   TGZ = 4
   TBZ = 5
   
-  attr_accessible :description, :name, :project_url, :source_code_url, :vcs
+  attr_accessible :description, :name, :project_url, :source_code_url, :vcs, :interval
   
   validates :source_code_url, presence: true
   validates :vcs, presence: true, inclusion: {in: TYPES}
@@ -22,31 +22,31 @@ class Project < ActiveRecord::Base
   belongs_to :license
   
   def is_git?
-    self.type.eql? TYPES[GIT]
+    self.vcs.eql? TYPES[GIT]
   end
   
   def is_svn?
-    self.type.eql? TYPES[SVN]
+    self.vcs.eql? TYPES[SVN]
   end
   
   def is_zip?
-    self.type.eql? TYPES[ZIP]
+    self.vcs.eql? TYPES[ZIP]
   end
   
   def is_tar?
-    self.type.eql? TYPES[TAR]
+    self.vcs.eql? TYPES[TAR]
   end
   
   def is_tgz?
-    self.type.eql? TYPES[TGZ]
+    self.vcs.eql? TYPES[TGZ]
   end
   
   def is_tbz?
-    self.type.eql? TYPES[TBZ]
+    self.vcs.eql? TYPES[TBZ]
   end
   
   def is_archive?
-    is_zip? || is_tar? || is_tgz || is_tbz
+    is_zip? || is_tar? || is_tgz? || is_tbz?
   end
   
   def friendly_name
@@ -54,6 +54,6 @@ class Project < ActiveRecord::Base
   end
   
   def tmp_path
-    Rails.root.join('tmp').join(self.friendly_name)
+    Rails.root.join('tmp').join(self.friendly_name).to_path
   end
 end

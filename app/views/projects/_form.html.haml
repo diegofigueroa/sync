@@ -1,60 +1,52 @@
-%header#overview.jumbotron.subhead
-  #br
-  .container
-    %fieldset  
-      %legend.span10
-        New Project
-    %br
 
-      = form_for @project do |f|
-        - if @project.errors.any?
-          #error_explanation
-            %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
-            %ul
-              - @project.errors.full_messages.each do |msg|
-                %li= msg
+= form_for @project, :html => {:class => "form-horizontal"} do |f|
+  - if @project.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+      %ul
+        - @project.errors.full_messages.each do |msg|
+          %li= msg
 
-        %div.control-group
-          .control-label
-            = f.label :name
-          %div.controls
-            .input-xxlarge
-              = f.text_field :name, :class => "span6"
-        %div
-          .control-group
-            .control-label
-              = f.label :description
-            %div.controls
-              .input-xxlarge
-                = f.text_area :description, :class => "span6" , :style => "height: 200px;"
+  .control-group
+    .control-label
+      = f.label :name
+    .controls
+      .input-xxlarge
+        = f.text_field :name, :class => "span6"
+    
+  .control-group
+    .control-label
+      = f.label :description
+    .controls
+      .input-xxlarge
+        = f.text_area :description, :class => "span6" , :style => "height: 200px;"
+
+  .control-group
+    .control-label
+      = f.label :project_url
+    .controls
+      .input-xxlarge
+        = f.text_field :project_url, :class => "span6"
+
+  .control-group
+    .control-label
+      = f.label :source_code_url
+    .controls
+      .input-xxlarge
+        = f.text_field :source_code_url, :class => "span6"
         
-        %div
-          .control-group
-            .control-label
-              = f.label :project_url
-            %div.controls
-              .input-xxlarge
-                = f.text_field :project_url, :class => "span6"
+  .control-group
+    .control-label
+      = f.label :vcs
+    .controls
+      .input-xxlarge
+        = f.select :vcs, Project::TYPES.map{ |value| [value.capitalize, value] }
+  
+  .control-group
+    .control-label
+      = f.label :interval
+    .controls
+      .input-xxlarge
+        = f.select :interval, Project::INTERVALS.map{ |value| ["#{value} hours", value] }
         
-        %div
-          .control-group
-            .control-label
-              = f.label :source_code_url
-            %div.controls
-              .input-xxlarge
-                = f.text_field :source_code_url, :class => "span6"
-                
-        %div
-          .control-group
-            .control-label
-              = f.label :vcs
-            %div.controls
-              .input-xxlarge
-                = f.select :vcs, options_for_select([["Git", "git"], ["SVN", "svn"] , ["ZIP", "zip"] , ["TAR", "tar"] , ["TGZ", "tgz"] , ["TBZ", "tbz"]])
-                
-        %div.row
-          %div.span7
-          %div.span4
-            %div.btn
-              .btn-primary
-                = f.submit 'Save'    
+  = f.submit 'Save', :class => "btn btn-primary"

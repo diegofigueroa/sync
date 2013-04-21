@@ -41,7 +41,10 @@ class GitPusher
     credentials = GithubSettings.first        # change this if per user settings enabled
     if credentials
       gh = authorize credentials
-      repo = gh.repos.get credentials.username, name
+      begin
+        repo = gh.repos.get credentials.username, name
+      rescue
+      end
     else
       Rails.logger.error "Couldn't find github credentials."
     end

@@ -9,10 +9,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    page = params[:page] || 1
+    
     if params[:tag]
-      @projects = Project.tagged_with(params[:tag])
+      @projects = Project.tagged_with(params[:tag]).page
     else
-      page = params[:page] || 1
       @projects = Project.page page
     end
 

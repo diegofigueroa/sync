@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   TGZ = 4
   TBZ = 5
   
-  attr_accessible :description, :name, :project_url, :source_code_url, :repo_name, :vcs, :interval, :center, :tag_list
+  attr_accessible :description, :name, :project_url, :source_code_url, :repo_name, :vcs, :interval, :center, :license_id, :tag_list
   acts_as_taggable
   
   validates :source_code_url, presence: true 
@@ -44,6 +44,24 @@ class Project < ActiveRecord::Base
               
   def is_tbz?
     self.vcs.eql? TYPES[TBZ]
+  end
+  
+  def synced?
+    last = self.logs.last
+    last && last.synced
+  end
+  
+  def updated?
+    last = self.logs.last
+    last && last.updated
+  end
+  
+  def tags_array
+    if self.tag_list.first
+      self.tag_list.first.split(",")
+    else
+      []
+    end
   end
   
   def is_archive?

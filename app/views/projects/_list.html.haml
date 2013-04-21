@@ -33,5 +33,9 @@
             %dd= project.center
             %dt License
             %dd= project.license
+      .row
+        #tags.span9
+          - project.tag_list.each do |tag|
+            %label.label.label-info= link_to tag, tag_path(tag)
 - else
   No results found.

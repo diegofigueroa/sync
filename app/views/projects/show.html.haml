@@ -1,8 +1,6 @@
 = content_for :jquery do
   $("#sync-btn").click(function(){$(this).addClass("disabled").children("i").addClass("icon-spin");});
 
-%p#notice= notice
-
 .page-header
   %h1= @project.name
   %h4= link_to @project.project_url, @project.project_url, :target => "_blank"
@@ -18,33 +16,42 @@
   .tab-content
     #tab1.tab-pane.active
       .row
-        .span10
+        .span9
           %blockquote
             %p.justify= @project.description
-        .span2
-          %span.label.label-info.span1
-            %justify= "license"
+        .span3
+          - if @project.synced?
+            %span.label.label-success.span2
+              %center Synced
+          - else
+            %span.label.label-warn.span2
+              %center Not synced
           %br/
-          %span.label.label-inverse.span1
+          %span.label.label-inverse.span2
             %center= link_to @project.vcs, @project.source_code_url, :target => "_blank"
       .row
-        .span10
+        .span9
           %dl.dl-horizontal
             %dt Last update 
             %dd= time_ago @project.logs.last.created_at
+            %dt Update interval
+            %dd= "#{@project.interval} hours"
+            
             %dt Center
             %dd= @project.center
             %dt License
-            %dd= link_to "License", @project.license
-            %dt Update interval
-            %dd= "#{@project.interval} hours"
-        .span2
+            %dd= @project.license
+            
+        .span3
           %br/
           %br/
-          = link_to sync_project_path(@project), id: "sync-btn", remote: true, class: "btn btn-success btn-large", data: {"loading-text" => "Syncing..."} do
+          = link_to sync_project_path(@project), id: "sync-btn", remote: true, class: "btn btn-success btn-large span2", data: {"loading-text" => "Syncing..."} do
             %i.icon-refresh
             Sync now
-              
+      .row
+        #tags.span9
+          - @project.tag_list.each do |tag|
+            %label.label.label-info= link_to tag, tag_path(tag)
       .form-actions
         = link_to edit_project_path(@project), :class => "btn btn-info" do
           %i.icon-edit
@@ -69,7 +76,7 @@
           %tr
             %td= time_ago log.created_at
             %td= log.action
-            %td= log.updated
-            %td= log.synced
+            %td= log.updated ? "Updated" : "No updates"
+            %td= log.synced  ? "Synced" : "Not synced"
             %td
               %span.label= log.level

@@ -3,7 +3,7 @@ require 'grit'
 class GitPusher
 
   def self.push project, tmp_path, branch = 'master'
-    name = project.repo_name || project.friendly_name
+    name = project.repo_name.blank? ? project.friendly_name : project.repo_name
     
     repo = self.find_repo name
     unless repo

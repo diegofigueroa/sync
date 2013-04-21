@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
   
   attr_accessible :description, :name, :project_url, :source_code_url, :repo_name, :vcs, :interval
   
-  validates :source_code_url, presence: true
+  validates :source_code_url, presence: true 
   validates :vcs, presence: true, inclusion: {in: TYPES}
   validates :interval, presence: true, inclusion: {in: INTERVALS}
   

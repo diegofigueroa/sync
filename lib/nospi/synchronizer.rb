@@ -5,6 +5,8 @@ class Synchronizer
     if INTERVALS.include? interval
       projets = Project.where(interval: interval)
       projets.find_each do |project|
+        
+        puts ">>>>>>>>>>>>>>>>>>>>> pulling changes (if any)...."
         if project.is_archive?
           pull_result = ArchivePuller.pull project
         elsif project.is_git?
@@ -14,6 +16,7 @@ class Synchronizer
         end
         
         if pull_result && log = pull_result[:log]
+          puts ">>>>>>>>>>>>>>>>>>>>> pushing changes (if any)...."
           if log.updated?
             GitPusher.push project, pull_result[:source_path]
           end

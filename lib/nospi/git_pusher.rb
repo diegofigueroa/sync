@@ -8,6 +8,7 @@ class GitPusher
     repo = self.find_repo name
     unless repo
       repo = self.create_repo name
+      project.logs.create action: "create repo", level: "info"
     end
     
     push_url = repo.html_url.gsub "github.com", "nasasync:#{CGI::escape('n@s@g1t')}@github.com" # chapuz FEO! maybe request a ssh key and use ssh_url
@@ -32,14 +33,6 @@ class GitPusher
     if credentials
       gh = authorize credentials
       repo = gh.repos.create :name => name #, :org => credentials.organization
-      
-      if repo
-        project.logs.create action: "create repo", level: "info"
-      else
-        project.logs.create action: "create repo failed", level: "error"
-      end
-      
-      repo
     else
       project.logs.create action: "create repo failed, invalid credentials", level: "error"
       Rails.logger.error "Couldn't find github credentials."

@@ -1,4 +1,4 @@
-NOSPI
+Sync
 =====
 
-NASA Open Source Projects Integrator.
+Sync is a automated system for NASA open source projects discovery and syncronization.

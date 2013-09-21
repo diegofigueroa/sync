@@ -57,7 +57,7 @@
           %i.icon-edit
           Edit
         .pull-right
-          = link_to @project.repo_name, :class => "btn", :target => "_blank" do 
+          = link_to ('https://github.com/nasasync/' + @project.friendly_name), :class => "btn", :target => "_blank" do 
             %i.icon-github.icon-large
             View on GitHub
               

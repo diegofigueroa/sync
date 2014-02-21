@@ -1,12 +1,10 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,7 +16,7 @@ group :assets do
   gem 'bootswatch-rails'
   gem 'font-awesome-rails'
   
-  gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', platforms: :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -36,13 +34,17 @@ gem 'grit'
 gem 'github_api'
 
 gem 'kaminari'
-gem 'whenever', :require => false
+gem 'whenever', require: false
 gem 'svn2git'
 
 gem 'acts-as-taggable-on'
 
-group :development, :test do
-  #gem 'thin'
+group :development do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # To use ActiveModel has_secure_password
@@ -52,7 +54,7 @@ end
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

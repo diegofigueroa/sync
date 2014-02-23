@@ -1,8 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
-Nospi::Application.config.session_store :cookie_store, key: '_nospi_session'
+Sync::Application.config.session_store :cookie_store, key: '_sync_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# Nospi::Application.config.session_store :active_record_store
+# Sync::Application.config.session_store :active_record_store

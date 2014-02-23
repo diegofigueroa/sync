@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Nospi::Application.load_tasks
+Sync::Application.load_tasks
